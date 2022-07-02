@@ -18,7 +18,7 @@ def start_message(finans):
 
 	markup.add(item1, item2)
 	bot.send_message(finans.chat.id, "Здравствуйте! Что вы хотите сделать", reply_markup=markup)
-	bot.register_next_step_handler(finans, еxamination)
+	bot.register_next_step_handler(finans, еxamination_menu)
 
 @bot.message_handler(commands=['help'])
 def help_message(hel):
@@ -42,20 +42,129 @@ def еxamination_menu(finans):
 		bot.register_next_step_handler(finans, еxamination_logics)
 
 	elif finans.text == "Статистика":
-		bot.send_message(finans.chat.id, "(Статистика)")
 		bot.register_next_step_handler(finans, statistics)
 
 
 def еxamination_logics(finans):
-	if finans.text == "Кар'єра"
-		pass
+	global category
+	if finans.text == "Кар'єра":
+		bot.send_message(finans.chat.id, "Введите сумму денег сколько вы потратели")
+		category = finans.text
+		print(category)
+		bot.register_next_step_handler(finans, entry)
 
-	elif finans.text == "Кар'єра"
-		pass
+	elif finans.text == "Сім'я":
+		bot.send_message(finans.chat.id, "Введите сумму денег сколько вы потратели")
+		category = finans.text
+		print(category)
+		bot.register_next_step_handler(finans, entry)
+
+	elif finans.text == "Оточення":
+		bot.send_message(finans.chat.id, "Введите сумму денег сколько вы потратели")
+		category = finans.text
+		print(category)
+		bot.register_next_step_handler(finans, entry)
+
+	elif finans.text == "Творчість і хоббі":
+		bot.send_message(finans.chat.id, "Введите сумму денег сколько вы потратели")
+		category = finans.text
+		print(category)
+		bot.register_next_step_handler(finans, entry)
+
+	elif finans.text == "Відпочинок та подорожі":
+		bot.send_message(finans.chat.id, "Введите сумму денег сколько вы потратели")
+		category = finans.text
+		print(category)
+		bot.register_next_step_handler(finans, entry)
+
+	elif finans.text == "Розвиток (освіта)":
+		bot.send_message(finans.chat.id, "Введите сумму денег сколько вы потратели")
+		category = finans.text
+		print(category)
+		bot.register_next_step_handler(finans, entry)
+
+	elif finans.text == "Здоров'я, спорт":
+		bot.send_message(finans.chat.id, "Введите сумму денег сколько вы потратели")
+		category = finans.text
+		print(category)
+		bot.register_next_step_handler(finans, entry)
+
+
+def entry(finans):
+	global sum_money
+	bot.send_message(finans.chat.id, "Введите дату в формате 02.07.2022")
+	sum_money = finans.text
+	print(sum_money)
+	bot.register_next_step_handler(finans, writing_to_file)
+
+def writing_to_file(finans):
+	global data, entry_list, fille
+	data = finans.text
+	print(data)
+	a = 100
+	entry_list = [category, sum_money]
+	bot.send_message(finans.chat.id, "Все сохранено")
+	if category == "Кар'єра":
+		fille = open("Кар'єра.txt","a")
+
+		with fille as a:
+			a.write(str(entry_list))
+			a.write("\n")
+	elif category == "Сім'я":
+		fille = open("Сім'я.txt","a")
+
+		with fille as a:
+			a.write(str(entry_list))
+			a.write("\n")
+
+	elif category == "Оточення":
+		fille = open("Оточення.txt","a")
+
+		with fille as a:
+			a.write(str(entry_list))
+			a.write("\n")
+
+	elif category == "Творчість і хоббі":
+		fille = open("Творчість_і_хоббі.txt","a")
+
+		with fille as a:
+			a.write(str(entry_list))
+			a.write("\n")
+
+	elif category == "Відпочинок та подорожі":
+		fille = open("Відпочинок_та_подорожі.txt","a")
+
+		with fille as a:
+			a.write(str(entry_list))
+			a.write("\n")
+
+	elif category == "Розвиток (освіта)":
+		fille = open("Розвиток_(освіта).txt","a")
+
+		with fille as a:
+			a.write(str(entry_list))
+			a.write("\n")
+
+	elif category == "Здоров'я, спорт":
+		fille = open("Здоров'я_спорт.txt","a")
+
+		with fille as a:
+			a.write(str(entry_list))
+			a.write("\n")
 
 
 def statistics(finans):
-	pass
+	try:
+		bot.send_message(finans.chat.id, open("Кар'єра.txt"))
+		bot.send_message(finans.chat.id, open("Сім'я.txt"))
+		bot.send_message(finans.chat.id, open("Оточення.txt"))
+		bot.send_message(finans.chat.id, open("Творчість_і_хоббі.txt"))
+		bot.send_message(finans.chat.id, open("Відпочинок_та_подорожі.txt"))
+		bot.send_message(finans.chat.id, open("Розвиток_(освіта).txt"))
+		bot.send_message(finans.chat.id, open("Здоров'я_спорт.txt"))
+	except FileNotFoundError:
+		bot.send_message(finans.chat.id, "Запесей больше нет")
+
 
 
 bot.polling(none_stop=True)
