@@ -1,5 +1,4 @@
 import telebot
-import json
 import re
 import datetime
 import requests
@@ -137,13 +136,13 @@ def writing_to_file(finans):
 		bot.send_message(finans.chat.id, "Ви ввели не сьогоднішню дату")
 
 	if category == "Кар'єра":
-		fille = open("Кар'єра.txt","a")
+		fille = open("Кар'єра.txt", "a")
 		fille_txt = {'category': category, 'money': sum_money_2}
 		fille.write(str(fille_txt))
 		fille.close()
 
 	elif category == "Сім'я":
-		fille = open("Сім'я.txt","a")
+		fille = open("Сім'я.txt", "a")
 		fille_txt = {'category': category, 'money': sum_money_2}
 		fille.write(str(fille_txt))
 		fille.close()
@@ -167,7 +166,7 @@ def writing_to_file(finans):
 		fille.close()
 
 	elif category == "Розвиток (освіта)":
-		fille = open("Розвиток (освіта).txt","a")
+		fille = open("Розвиток (освіта).txt", "a")
 		fille_txt = {'category': category, 'money': sum_money_2}
 		fille.write(str(fille_txt))
 		fille.close()
