@@ -23,7 +23,7 @@ def start_message_questionnaire(finans):
 	global name
 	name = finans.text
 	print(name)
-	bot.send_message(finans.chat.id, "Яка у вас зарплата на тиждень")
+	bot.send_message(finans.chat.id, "Який у вас дохід за тиждень")
 	bot.register_next_step_handler(finans, start_message_questionnaire_many)
 
 
@@ -31,8 +31,8 @@ def start_message_questionnaire_many(finans):
 	global many
 	many = int(finans.text) 
 	print(many)
-	bot.send_message(finans.chat.id, f"Ім'я {name} Зарплата {many}")
-	bot.send_message(finans.chat.id, "Якщо ви записали щось не так то можете натиснути на star щоб занава заповнити анкету")
+	bot.send_message(finans.chat.id, f"Ім'я {name} Дохід {many}")
+	bot.send_message(finans.chat.id, "Якщо ви записали щось не так то можете натиснути на star щоб спочатку заповнити анкету")
 	markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
 	item1 = types.KeyboardButton("Внести витрати до категорії")
 	item2 = types.KeyboardButton("Статистика")
@@ -111,7 +111,7 @@ def еxamination_logics(finans):
 def entry(finans):
 	global sum_money
 	print(f"{many} анкета")
-	bot.send_message(finans.chat.id, "Введіть сьогоднішню дату у форматі 2022-07-03\n1)(yyyy/mm/dd)\n2)(- тере теж обов'язково))")
+	bot.send_message(finans.chat.id, "Введіть сьогоднішню дату у форматі 2022-07-03\n1)(yyyy-mm-dd)\n2)(- тере теж обов'язково))")
 	sum_money = int(finans.text)
 	if sum_money <= many:
 		print(sum_money)
@@ -188,7 +188,7 @@ def statistics(finans):
 			elif a > 9:
 				bot.send_message(finans.chat.id, f"{a}% Ви перевищили норму")
 			elif a < 9:
-				bot.send_message(finans.chat.id, f"{a}% Ви принизили норму")
+				bot.send_message(finans.chat.id, f"{a}% Ви занизили норму")
 		
 		bot.send_message(finans.chat.id, "Сім'я")
 		with open("Сім'я.txt", 'r') as f:
@@ -198,7 +198,7 @@ def statistics(finans):
 			elif s > 30:
 				bot.send_message(finans.chat.id, f"{s}% Ви перевищили норму")
 			elif s < 30:
-				bot.send_message(finans.chat.id, f"{s}% Ви принизили норму")
+				bot.send_message(finans.chat.id, f"{s}% Ви занизили норму")
 
 		bot.send_message(finans.chat.id, "Оточення")
 		with open("Оточення.txt", 'r') as f:
@@ -208,7 +208,7 @@ def statistics(finans):
 			elif d > 5:
 				bot.send_message(finans.chat.id, f"{d}% Ви перевищили норму")
 			elif d < 5:
-				bot.send_message(finans.chat.id, f"{d}% Ви принизили норму")
+				bot.send_message(finans.chat.id, f"{d}% Ви занизили норму")
 
 		bot.send_message(finans.chat.id, "Творчість і хоббі")
 		with open("Творчість і хоббі.txt", 'r') as f:
@@ -218,7 +218,7 @@ def statistics(finans):
 			elif f > 10:
 				bot.send_message(finans.chat.id, f"{f}% Ви перевищили норму")
 			elif f < 10:
-				bot.send_message(finans.chat.id, f"{f}% Ви принизили норму")
+				bot.send_message(finans.chat.id, f"{f}% Ви занизили норму")
 
 		bot.send_message(finans.chat.id, "Відпочинок та подорожі")
 		with open("Відпочинок та подорожі.txt", 'r') as f:
@@ -228,7 +228,7 @@ def statistics(finans):
 			elif g > 14:
 				bot.send_message(finans.chat.id, f"{g}% Ви перевищили норму")
 			elif g < 14:
-				bot.send_message(finans.chat.id, f"{g}% Ви принизили норму")
+				bot.send_message(finans.chat.id, f"{g}% Ви занизили норму")
 			
 		bot.send_message(finans.chat.id, "Розвиток (освіта)")
 		with open("Розвиток (освіта).txt", 'r') as f:
@@ -238,7 +238,7 @@ def statistics(finans):
 			elif h > 15:
 				bot.send_message(finans.chat.id, f"{h}% Ви перевищили норму")
 			elif h < 15:
-				bot.send_message(finans.chat.id, f"{h}% Ви принизили норму")
+				bot.send_message(finans.chat.id, f"{h}% Ви занизили норму")
 
 		bot.send_message(finans.chat.id, "Здоров'я, спорт")
 		with open("Здоров'я, спорт.txt", 'r') as f:
@@ -248,7 +248,9 @@ def statistics(finans):
 			elif j > 17:
 				bot.send_message(finans.chat.id, f"{j}% Ви перевищили норму")
 			elif j < 17:
-				bot.send_message(finans.chat.id, f"{j}% Ви принизили норму")
+				bot.send_message(finans.chat.id, f"{j}% Ви занизили норму")
+		
+		bot.send_message(finans.chat.id, "Зверніть увагу на ті категорії в яких перевищені витрати або ж вони занижені")
 	except FileNotFoundError:
 		bot.send_message(finans.chat.id, "Записів більше немає")
 
