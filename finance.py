@@ -23,7 +23,7 @@ def start_message_questionnaire(finans):
 	global name
 	name = finans.text
 	print(name)
-	bot.send_message(finans.chat.id, "Яка у вас зарплата на тиждень")
+	bot.send_message(finans.chat.id, "Яка у вас дохід за тиждень")
 	bot.register_next_step_handler(finans, start_message_questionnaire_many)
 
 
@@ -31,7 +31,7 @@ def start_message_questionnaire_many(finans):
 	global many
 	many = int(finans.text) 
 	print(many)
-	bot.send_message(finans.chat.id, f"Ім'я {name} Зарплата {many}")
+	bot.send_message(finans.chat.id, f"Ім'я {name} Дохід {many}")
 	bot.send_message(finans.chat.id, "Якщо ви записали щось не так то можете натиснути на star щоб спочатку заповнити анкету")
 	markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
 	item1 = types.KeyboardButton("Внести витрати до категорії")
