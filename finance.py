@@ -32,7 +32,7 @@ def start_message_questionnaire_many(finans):
 	many = int(finans.text) 
 	print(many)
 	bot.send_message(finans.chat.id, f"Ім'я {name} Зарплата {many}")
-	bot.send_message(finans.chat.id, "Якщо ви записали щось не так то можете натиснути на star щоб занава заповнити анкету")
+	bot.send_message(finans.chat.id, "Якщо ви записали щось не так то можете натиснути на star щоб спочатку заповнити анкету")
 	markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
 	item1 = types.KeyboardButton("Внести витрати до категорії")
 	item2 = types.KeyboardButton("Статистика")
@@ -111,7 +111,7 @@ def еxamination_logics(finans):
 def entry(finans):
 	global sum_money
 	print(f"{many} анкета")
-	bot.send_message(finans.chat.id, "Введіть сьогоднішню дату у форматі 2022-07-03\n1)(yyyy/mm/dd)\n2)(- тере теж обов'язково))")
+	bot.send_message(finans.chat.id, "Введіть сьогоднішню дату у форматі 2022-07-03\n1)(yyyy-mm-dd)\n2)(- тере теж обов'язково))")
 	sum_money = int(finans.text)
 	if sum_money <= many:
 		print(sum_money)
