@@ -23,7 +23,7 @@ def start_message_questionnaire(finans):
 	global name
 	name = finans.text
 	print(name)
-	bot.send_message(finans.chat.id, "Яка у вас дохід за тиждень")
+	bot.send_message(finans.chat.id, "Який у вас дохід за тиждень")
 	bot.register_next_step_handler(finans, start_message_questionnaire_many)
 
 
